@@ -14,8 +14,8 @@ extended plugin on view file finder from view name for laravel framework
    'providers' => [
         Illuminate\Auth\AuthServiceProvider::class,
         ......
-        Jacksunny\ViewFinder\ExtendedViewServiceProvider::class,
-        App\Providers\MyExtendedViewServiceProvider::class,
+        Jacksunny\ViewFinder\ExtendedViewServiceProvider::class,  //only default view finder class
+        App\Providers\MyExtendedViewServiceProvider::class,       //custom my view finder class
     ],
    </pre>
 3.  add test code to check if it works
@@ -29,11 +29,7 @@ extended plugin on view file finder from view name for laravel framework
    <pre>
    class MyExtendedFileViewFinder extends AbsExtendedFileViewFinder {
 
-    public function __construct(Filesystem $files, array $paths, array $extensions = null) {
-        parent::__construct($files, $paths, $extensions);
-    }
-
-    public function findNeededFilesInPath($files, $extensions, $name, $path, $user) {
+    public function findNeededFilesInPath($name, $path, $user) {
       ...
     }
     
